@@ -49,7 +49,7 @@ fi
 # Definir variáveis
 PROJECT_DIR="/opt/guardian-voip-v3"
 SERVICE_USER="guardian"
-REPO_URL="https://github.com/rafael-ziviani/guardian-voip-v3.git"
+REPO_URL="https://github.com/zivianivr/guardian_lovable.git"
 
 log "Iniciando instalação do Sistema Guardian VoIP v3.0 & Nexus AI..."
 

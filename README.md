@@ -41,12 +41,9 @@ Sistema completo de gerenciamento VoIP integrado com Inteligência Artificial av
 ### Instalação Automatizada
 
 ```bash
-# Clone o repositório
-git clone https://github.com/SEU_USUARIO/guardian-voip-v3.git
-cd guardian-voip-v3
-
-# Execute o script de instalação
-sudo chmod +x install.sh
+# No servidor, execute:
+wget https://raw.githubusercontent.com/zivianivr/guardian_lovable/main/install.sh
+chmod +x install.sh
 sudo ./install.sh
 ```
 
@@ -107,7 +104,7 @@ ZABBIX_SERVER_1_PASS=senha
 
 # GitHub para auto-atualização
 GITHUB_TOKEN=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
-GITHUB_REPO=https://github.com/SEU_USUARIO/guardian-voip-v3.git
+GITHUB_REPO=https://github.com/zivianivr/guardian_lovable.git
 
 # Sistema
 SECRET_KEY=sua_chave_secreta_aqui
