@@ -4,7 +4,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import GuardianDashboard from "./components/GuardianDashboard";
@@ -29,7 +28,9 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/guardian" element={<GuardianDashboard />} />
+                  <Route path="/guardian/*" element={<GuardianDashboard />} />
                   <Route path="/nexus" element={<NexusAI />} />
+                  <Route path="/nexus/*" element={<NexusAI />} />
                   <Route path="/system" element={<SystemManagement />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
