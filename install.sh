@@ -49,8 +49,7 @@ fi
 # Definir variáveis
 PROJECT_DIR="/opt/guardian-voip-v3"
 SERVICE_USER="guardian"
-DOMAIN=""
-EMAIL=""
+REPO_URL="https://github.com/rafael-ziviani/guardian-voip-v3.git"
 
 log "Iniciando instalação do Sistema Guardian VoIP v3.0 & Nexus AI..."
 
@@ -123,14 +122,13 @@ GRANT ALL PRIVILEGES ON DATABASE guardian_db TO guardian;
 \q
 EOF
 
-# Clonar repositório (será atualizado com o endereço real)
+# Clonar repositório
 log "Clonando repositório do projeto..."
 if [ -d "$PROJECT_DIR" ]; then
     rm -rf "$PROJECT_DIR"
 fi
 
-# Usar token do GitHub para clonar
-git clone https://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@github.com/SEU_USUARIO/guardian-voip-v3.git $PROJECT_DIR
+git clone $REPO_URL $PROJECT_DIR
 chown -R $SERVICE_USER:$SERVICE_USER $PROJECT_DIR
 
 # Configurar ambientes Python
@@ -164,7 +162,7 @@ DEBUG=False
 
 # GitHub para auto-atualização
 GITHUB_TOKEN=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
-GITHUB_REPO=https://github.com/SEU_USUARIO/guardian-voip-v3.git
+GITHUB_REPO=$REPO_URL
 
 # Supabase
 SUPABASE_URL=https://fvdwvisahnnitepsdova.supabase.co
@@ -372,7 +370,6 @@ cat << "EOF"
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🌐 URL de Acesso: http://SEU_IP_SERVIDOR
-                  (ou http://SEU_DOMINIO se configurado)
 
 👤 Super Usuário Padrão:
    📧 Email: rafael.ziviani@live.com

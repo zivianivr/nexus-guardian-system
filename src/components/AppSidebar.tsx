@@ -12,7 +12,8 @@ import {
   MessageSquare,
   HardDrive,
   Globe,
-  Zap
+  Zap,
+  UserCheck
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -39,8 +40,9 @@ const mainItems = [
 const guardianItems = [
   { title: "Monitoramento", url: "/guardian/monitoring", icon: Network },
   { title: "Provisionamento", url: "/guardian/provisioning", icon: Phone },
-  { title: "Blocos IP", url: "/guardian/ip-blocks", icon: Globe },
   { title: "Telefonia", url: "/guardian/telephony", icon: Phone },
+  { title: "Usuários", url: "/guardian/users", icon: UserCheck },
+  { title: "Blocos IP", url: "/guardian/ip-blocks", icon: Globe },
   { title: "Backup", url: "/guardian/backup", icon: HardDrive },
   { title: "Suporte", url: "/guardian/support", icon: MessageSquare },
 ];

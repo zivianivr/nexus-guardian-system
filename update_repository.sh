@@ -19,21 +19,27 @@ echo "Usuário GitHub: $GITHUB_USER"
 echo "Nome do repositório: $REPO_NAME"
 
 # Atualizar install.sh
-sed -i "s|https://github.com/SEU_USUARIO/guardian-voip-v3.git|$REPO_URL|g" install.sh
-sed -i "s|SEU_USUARIO|$GITHUB_USER|g" install.sh
+sed -i "s|REPO_URL=\"https://github.com/.*\"|REPO_URL=\"$REPO_URL\"|g" install.sh
 
-# Atualizar README.md
-sed -i "s|https://github.com/SEU_USUARIO/guardian-voip-v3.git|$REPO_URL|g" README.md
-sed -i "s|SEU_USUARIO|$GITHUB_USER|g" README.md
+# Atualizar README.md se existir
+if [ -f "README.md" ]; then
+    sed -i "s|https://github.com/SEU_USUARIO/guardian-voip-v3.git|$REPO_URL|g" README.md
+    sed -i "s|SEU_USUARIO|$GITHUB_USER|g" README.md
+fi
 
 # Atualizar .env.example
-sed -i "s|https://github.com/SEU_USUARIO/guardian-voip-v3.git|$REPO_URL|g" .env.example
-sed -i "s|SEU_USUARIO|$GITHUB_USER|g" .env.example
+if [ -f ".env.example" ]; then
+    sed -i "s|https://github.com/SEU_USUARIO/guardian-voip-v3.git|$REPO_URL|g" .env.example
+    sed -i "s|SEU_USUARIO|$GITHUB_USER|g" .env.example
+fi
 
 echo "✅ Arquivos atualizados com sucesso!"
 echo ""
 echo "📝 Próximos passos:"
 echo "1. Commit e push dos arquivos para o repositório"
-echo "2. No servidor, execute: sudo chmod +x install.sh && sudo ./install.sh"
+echo "2. No servidor, execute:"
+echo "   wget https://raw.githubusercontent.com/$GITHUB_USER/$REPO_NAME/main/install.sh"
+echo "   chmod +x install.sh"
+echo "   sudo ./install.sh"
 echo "3. Acesse o sistema via: http://SEU_IP_SERVIDOR"
 echo "4. Login: rafael.ziviani@live.com | Senha: 19782211Robert@"

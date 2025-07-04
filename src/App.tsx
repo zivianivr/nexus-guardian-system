@@ -9,6 +9,10 @@ import NotFound from "./pages/NotFound";
 import GuardianDashboard from "./components/GuardianDashboard";
 import NexusAI from "./components/NexusAI";
 import SystemManagement from "./components/SystemManagement";
+import GuardianMonitoring from "./components/GuardianMonitoring";
+import GuardianProvisioning from "./components/GuardianProvisioning";
+import GuardianTelephony from "./components/GuardianTelephony";
+import GuardianUsers from "./components/GuardianUsers";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "./components/AppSidebar";
 
@@ -28,7 +32,10 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/guardian" element={<GuardianDashboard />} />
-                  <Route path="/guardian/*" element={<GuardianDashboard />} />
+                  <Route path="/guardian/monitoring" element={<GuardianMonitoring />} />
+                  <Route path="/guardian/provisioning" element={<GuardianProvisioning />} />
+                  <Route path="/guardian/telephony" element={<GuardianTelephony />} />
+                  <Route path="/guardian/users" element={<GuardianUsers />} />
                   <Route path="/nexus" element={<NexusAI />} />
                   <Route path="/nexus/*" element={<NexusAI />} />
                   <Route path="/system" element={<SystemManagement />} />
