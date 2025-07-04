@@ -1,10 +1,10 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Sistema Guardian VoIP v3.0 & Nexus AI - Design System */
+/* Todas as cores, gradientes, fontes e animações personalizadas */
 
 @layer base {
   :root {
@@ -39,20 +39,20 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Guardian VoIP Theme Colors */
+    --guardian-primary: 217 91% 60%;
+    --guardian-secondary: 147 51% 43%;
+    --nexus-primary: 250 84% 54%;
+    --nexus-secondary: 280 100% 70%;
+    --cyber-glow: 217 91% 60%;
   }
 
   .dark {
@@ -83,6 +83,7 @@ All colors MUST be HSL.
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -101,5 +102,418 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  /* Scrollbar personalizada */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-800;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-600 hover:bg-slate-500;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-corner {
+    @apply bg-slate-800;
+  }
+}
+
+@layer components {
+  /* Guardian VoIP Theme Components */
+  .guardian-gradient {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  }
+
+  .nexus-gradient {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  }
+
+  .cyber-glow {
+    box-shadow: 
+      0 0 5px rgba(59, 130, 246, 0.3),
+      0 0 10px rgba(59, 130, 246, 0.2),
+      0 0 15px rgba(59, 130, 246, 0.1);
+  }
+
+  .ai-pulse {
+    animation: ai-pulse 2s ease-in-out infinite;
+  }
+
+  .status-online {
+    @apply bg-green-500 text-white;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+  }
+
+  .status-warning {
+    @apply bg-yellow-500 text-white;
+    box-shadow: 0 0 10px rgba(234, 179, 8, 0.4);
+  }
+
+  .status-offline {
+    @apply bg-red-500 text-white;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    @apply transition-all duration-300 ease-in-out;
+    @apply hover:scale-105 hover:shadow-xl;
+  }
+
+  .card-cyber {
+    @apply bg-slate-800/50 border border-slate-700;
+    @apply backdrop-blur-sm;
+    background-image: 
+      linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Button variants */
+  .btn-cyber {
+    @apply bg-blue-600 hover:bg-blue-700 text-white;
+    @apply border border-blue-500/50 shadow-lg;
+    @apply transition-all duration-200;
+    @apply hover:shadow-blue-500/25 hover:shadow-xl;
+  }
+
+  .btn-nexus {
+    @apply bg-purple-600 hover:bg-purple-700 text-white;
+    @apply border border-purple-500/50 shadow-lg;
+    @apply transition-all duration-200;
+    @apply hover:shadow-purple-500/25 hover:shadow-xl;
+  }
+
+  /* Text effects */
+  .text-cyber {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-nexus {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Loading animations */
+  .loading-dots::after {
+    content: '';
+    animation: loading-dots 1.5s steps(4, end) infinite;
+  }
+
+  /* AI Processing indicator */
+  .ai-thinking {
+    @apply relative;
+  }
+
+  .ai-thinking::before {
+    content: '';
+    @apply absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600;
+    @apply rounded-lg blur opacity-25;
+    animation: ai-glow 2s ease-in-out infinite alternate;
+  }
+
+  /* Status indicators */
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  .status-dot.online {
+    @apply bg-green-400;
+  }
+
+  .status-dot.warning {
+    @apply bg-yellow-400;
+  }
+
+  .status-dot.offline {
+    @apply bg-red-400;
+  }
+
+  /* Sidebar customizations */
+  .sidebar-dark {
+    @apply bg-slate-900 border-slate-700;
+  }
+
+  .sidebar-item {
+    @apply flex items-center px-4 py-2 text-slate-300;
+    @apply hover:bg-slate-800 hover:text-white;
+    @apply transition-colors duration-200;
+  }
+
+  .sidebar-item.active {
+    @apply bg-blue-600/20 text-blue-400 border-r-2 border-blue-400;
+  }
+
+  /* Message bubbles */
+  .message-user {
+    @apply bg-blue-600 text-white rounded-lg p-3 ml-auto max-w-xs;
+  }
+
+  .message-ai {
+    @apply bg-slate-700 text-white rounded-lg p-3 mr-auto max-w-sm;
+    @apply border border-slate-600;
+  }
+
+  .message-system {
+    @apply bg-slate-800 text-slate-300 rounded-lg p-2 text-sm text-center;
+    @apply border border-slate-700;
+  }
+
+  /* Charts and graphs */
+  .chart-container {
+    @apply bg-slate-800/50 border border-slate-700 rounded-lg p-4;
+    @apply backdrop-blur-sm;
+  }
+
+  /* Form elements */
+  .form-cyber {
+    @apply bg-slate-800 border-slate-600 text-white;
+    @apply focus:border-blue-500 focus:ring-blue-500/20;
+    @apply transition-all duration-200;
+  }
+
+  /* Notification styles */
+  .notification {
+    @apply bg-slate-800 border border-slate-700 text-white;
+    @apply shadow-lg backdrop-blur-sm;
+  }
+
+  .notification.success {
+    @apply border-green-500/30 bg-green-900/20;
+  }
+
+  .notification.warning {
+    @apply border-yellow-500/30 bg-yellow-900/20;
+  }
+
+  .notification.error {
+    @apply border-red-500/30 bg-red-900/20;
+  }
+
+  /* Modal styles */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm;
+    @apply flex items-center justify-center p-4;
+  }
+
+  .modal-content {
+    @apply bg-slate-800 border border-slate-700 rounded-lg;
+    @apply shadow-2xl max-w-lg w-full max-h-[90vh] overflow-auto;
+  }
+
+  /* Badge styles */
+  .badge-online {
+    @apply bg-green-600 text-white text-xs px-2 py-1 rounded-full;
+  }
+
+  .badge-offline {
+    @apply bg-red-600 text-white text-xs px-2 py-1 rounded-full;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-600 text-white text-xs px-2 py-1 rounded-full;
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes ai-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  @keyframes ai-glow {
+    0% { opacity: 0.2; }
+    100% { opacity: 0.4; }
+  }
+
+  @keyframes loading-dots {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+    100% { content: ''; }
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Utility classes */
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 2s ease-in-out infinite;
+  }
+
+  /* Layout utilities */
+  .container-cyber {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .grid-responsive {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+
+  /* Text utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-gradient-cyber {
+    @apply bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-nexus {
+    @apply bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent;
+  }
+
+  /* Interactive utilities */
+  .hover-lift {
+    @apply transition-transform duration-200 hover:-translate-y-1;
+  }
+
+  .hover-glow {
+    @apply transition-shadow duration-200 hover:shadow-lg hover:shadow-blue-500/25;
+  }
+
+  .focus-cyber {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500;
+  }
+
+  /* Responsive design utilities */
+  .mobile-only {
+    @apply block md:hidden;
+  }
+
+  .desktop-only {
+    @apply hidden md:block;
+  }
+
+  .tablet-up {
+    @apply hidden sm:block;
+  }
+
+  /* Dark mode utilities */
+  .dark-card {
+    @apply bg-slate-800/50 border-slate-700;
+  }
+
+  .dark-input {
+    @apply bg-slate-800 border-slate-600 text-white placeholder-slate-400;
+  }
+
+  .dark-button {
+    @apply bg-slate-700 hover:bg-slate-600 text-white border-slate-600;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .card-cyber {
+    @apply border-2 border-blue-400;
+  }
+  
+  .text-cyber {
+    @apply text-blue-400;
+  }
+  
+  .text-nexus {
+    @apply text-purple-400;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visible for accessibility */
+@supports selector(:focus-visible) {
+  *:focus {
+    outline: none;
+  }
+  
+  *:focus-visible {
+    @apply outline-2 outline-blue-500 outline-offset-2;
   }
 }
