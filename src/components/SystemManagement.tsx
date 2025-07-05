@@ -25,9 +25,12 @@ import {
   Edit,
   Trash2,
   UserCheck,
-  UserX
+  UserX,
+  LogOut,
+  Github
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface User {
   id: string;
@@ -40,6 +43,7 @@ interface User {
 
 const SystemManagement = () => {
   const { toast } = useToast();
+  const { profile, isSuperAdmin, signOut } = useAuth();
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState<User[]>([
     {
@@ -78,19 +82,37 @@ const SystemManagement = () => {
   });
 
   const handleUpdateSystem = async () => {
+    if (!isSuperAdmin) {
+      toast({
+        title: "Acesso Negado",
+        description: "Apenas Super Administradores podem atualizar o sistema.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setLoading(true);
     try {
-      // Simular chamada para API de atualização
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      
-      toast({
-        title: "Sistema Atualizado",
-        description: "O sistema foi atualizado com sucesso do repositório GitHub!",
+      // Chamar API para atualizar o sistema via GitHub
+      const response = await fetch('/api/update-system', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
+
+      if (response.ok) {
+        toast({
+          title: "Sistema Atualizado",
+          description: "O sistema foi atualizado com sucesso do repositório GitHub!",
+        });
+      } else {
+        throw new Error('Falha na atualização');
+      }
     } catch (error) {
       toast({
         title: "Erro na Atualização",
-        description: "Ocorreu um erro ao atualizar o sistema.",
+        description: "Ocorreu um erro ao atualizar o sistema. Verifique os logs.",
         variant: "destructive",
       });
     } finally {
@@ -172,26 +194,40 @@ const SystemManagement = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-              Gerenciamento do Sistema
-            </h1>
-            <p className="text-slate-400 mt-2">Configurações, usuários e atualizações do sistema</p>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Button 
-              onClick={handleUpdateSystem}
-              disabled={loading}
-              className="bg-green-600 hover:bg-green-700"
-            >
-              {loading ? (
-                <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-              ) : (
-                <Download className="w-4 h-4 mr-2" />
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                Gerenciamento do Sistema
+              </h1>
+              <p className="text-slate-400 mt-2">Configurações, usuários e atualizações do sistema</p>
+              <p className="text-slate-500 text-sm mt-1">
+                Logado como: <span className="text-blue-400">{profile?.full_name || profile?.email}</span>
+                {isSuperAdmin && <span className="text-purple-400 ml-2">(Super Admin)</span>}
+              </p>
+            </div>
+            <div className="flex items-center space-x-4">
+              {isSuperAdmin && (
+                <Button 
+                  onClick={handleUpdateSystem}
+                  disabled={loading}
+                  className="bg-green-600 hover:bg-green-700"
+                >
+                  {loading ? (
+                    <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                  ) : (
+                    <Github className="w-4 h-4 mr-2" />
+                  )}
+                  Atualizar Sistema
+                </Button>
               )}
-              Atualizar Sistema
-            </Button>
-          </div>
+              <Button 
+                onClick={signOut}
+                variant="outline" 
+                className="border-slate-600 hover:bg-slate-700"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Sair
+              </Button>
+            </div>
         </div>
 
         {/* Stats Cards */}

@@ -342,10 +342,10 @@ log "Inicializando banco de dados..."
 cd $PROJECT_DIR/backend/guardian
 sudo -u $SERVICE_USER bash -c "source venv/bin/activate && python init_db.py"
 
-# Criar super usuário
-log "Criando super usuário..."
-cd $PROJECT_DIR/backend/guardian
-sudo -u $SERVICE_USER bash -c "source venv/bin/activate && python create_superuser.py"
+# Criar usuário Master no Supabase (já criado via migration)
+log "Usuário Master já configurado via Supabase..."
+log "Email: rafael.ziviani@live.com"
+log "Senha: 19782211Robert@"
 
 # Recarregar e iniciar serviços
 log "Iniciando serviços..."

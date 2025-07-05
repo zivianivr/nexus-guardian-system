@@ -33,10 +33,15 @@ import {
   MessageSquare,
   Headphones,
   Wifi,
-  HardDrive
+  HardDrive,
+  LogOut
 } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
+  const { profile, isSuperAdmin, signOut } = useAuth();
+  const navigate = useNavigate();
   const [systemStatus, setSystemStatus] = useState({
     guardian: 'online',
     nexusAI: 'online',
@@ -100,9 +105,23 @@ const Index = () => {
                 <Activity className="w-3 h-3 mr-1" />
                 Sistema Online
               </Badge>
-              <Button variant="outline" size="sm" className="border-slate-600 text-slate-300 hover:bg-slate-700">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="border-slate-600 text-slate-300 hover:bg-slate-700"
+                onClick={() => navigate('/system')}
+              >
                 <Settings className="w-4 h-4 mr-2" />
                 Configurações
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="border-slate-600 text-slate-300 hover:bg-slate-700"
+                onClick={signOut}
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Sair
               </Button>
             </div>
           </div>
@@ -235,27 +254,51 @@ const Index = () => {
 
                   <TabsContent value="voip" className="mt-4">
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/guardian/monitoring')}
+                      >
                         <Network className="w-6 h-6 mb-2 text-blue-400" />
                         <span className="text-xs">Monitoramento</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/guardian/provisioning')}
+                      >
                         <Phone className="w-6 h-6 mb-2 text-green-400" />
                         <span className="text-xs">Provisionamento</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/guardian')}
+                      >
                         <Globe className="w-6 h-6 mb-2 text-purple-400" />
                         <span className="text-xs">Blocos IP</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/guardian/telephony')}
+                      >
                         <Headphones className="w-6 h-6 mb-2 text-yellow-400" />
                         <span className="text-xs">Telefonia</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/guardian')}
+                      >
                         <HardDrive className="w-6 h-6 mb-2 text-orange-400" />
                         <span className="text-xs">Backup</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/guardian')}
+                      >
                         <MessageSquare className="w-6 h-6 mb-2 text-pink-400" />
                         <span className="text-xs">Suporte</span>
                       </Button>
@@ -264,27 +307,51 @@ const Index = () => {
 
                   <TabsContent value="ai" className="mt-4">
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/nexus')}
+                      >
                         <Brain className="w-6 h-6 mb-2 text-purple-400" />
                         <span className="text-xs">Orquestração</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/nexus')}
+                      >
                         <Bot className="w-6 h-6 mb-2 text-blue-400" />
                         <span className="text-xs">Chat IA</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/nexus')}
+                      >
                         <Cpu className="w-6 h-6 mb-2 text-green-400" />
                         <span className="text-xs">Análise Preditiva</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/nexus')}
+                      >
                         <RefreshCw className="w-6 h-6 mb-2 text-yellow-400" />
                         <span className="text-xs">Auto-Correção</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/nexus')}
+                      >
                         <Lock className="w-6 h-6 mb-2 text-red-400" />
                         <span className="text-xs">Detecção Fraude</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/nexus')}
+                      >
                         <Eye className="w-6 h-6 mb-2 text-indigo-400" />
                         <span className="text-xs">Consenso IA</span>
                       </Button>
@@ -293,27 +360,51 @@ const Index = () => {
 
                   <TabsContent value="tools" className="mt-4">
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => window.open('https://github.com/zivianivr/guardian_lovable', '_blank')}
+                      >
                         <Smartphone className="w-6 h-6 mb-2 text-blue-400" />
                         <span className="text-xs">App Mobile</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => window.open('https://github.com/zivianivr/guardian_lovable/releases', '_blank')}
+                      >
                         <Download className="w-6 h-6 mb-2 text-green-400" />
                         <span className="text-xs">Desktop App</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => window.open('https://github.com/zivianivr/guardian_lovable', '_blank')}
+                      >
                         <Github className="w-6 h-6 mb-2 text-gray-400" />
                         <span className="text-xs">GitHub</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/system')}
+                      >
                         <Settings className="w-6 h-6 mb-2 text-purple-400" />
                         <span className="text-xs">Configurações</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/guardian')}
+                      >
                         <BarChart3 className="w-6 h-6 mb-2 text-yellow-400" />
                         <span className="text-xs">Relatórios</span>
                       </Button>
-                      <Button variant="outline" className="h-20 flex-col border-slate-600 hover:bg-slate-700">
+                      <Button 
+                        variant="outline" 
+                        className="h-20 flex-col border-slate-600 hover:bg-slate-700"
+                        onClick={() => navigate('/guardian/users')}
+                      >
                         <Users className="w-6 h-6 mb-2 text-pink-400" />
                         <span className="text-xs">Usuários</span>
                       </Button>
@@ -363,19 +454,34 @@ const Index = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <Button className="w-full justify-start bg-blue-600 hover:bg-blue-700">
+                  <Button 
+                    className="w-full justify-start bg-blue-600 hover:bg-blue-700"
+                    onClick={() => navigate('/nexus')}
+                  >
                     <Brain className="w-4 h-4 mr-2" />
                     Consultar Nexus AI
                   </Button>
-                  <Button variant="outline" className="w-full justify-start border-slate-600 hover:bg-slate-700">
+                  <Button 
+                    variant="outline" 
+                    className="w-full justify-start border-slate-600 hover:bg-slate-700"
+                    onClick={() => navigate('/guardian/monitoring')}
+                  >
                     <Network className="w-4 h-4 mr-2" />
                     Analisar Dispositivo
                   </Button>
-                  <Button variant="outline" className="w-full justify-start border-slate-600 hover:bg-slate-700">
+                  <Button 
+                    variant="outline" 
+                    className="w-full justify-start border-slate-600 hover:bg-slate-700"
+                    onClick={() => navigate('/guardian/provisioning')}
+                  >
                     <Phone className="w-4 h-4 mr-2" />
                     Provisionar Telefone
                   </Button>
-                  <Button variant="outline" className="w-full justify-start border-slate-600 hover:bg-slate-700">
+                  <Button 
+                    variant="outline" 
+                    className="w-full justify-start border-slate-600 hover:bg-slate-700"
+                    onClick={() => navigate('/guardian')}
+                  >
                     <HardDrive className="w-4 h-4 mr-2" />
                     Backup Manual
                   </Button>
