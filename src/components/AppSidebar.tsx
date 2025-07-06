@@ -42,16 +42,14 @@ const guardianItems = [
   { title: "Provisionamento", url: "/guardian/provisioning", icon: Phone },
   { title: "Telefonia", url: "/guardian/telephony", icon: Phone },
   { title: "Usuários", url: "/guardian/users", icon: UserCheck },
-  { title: "Blocos IP", url: "/guardian/ip-blocks", icon: Globe },
-  { title: "Backup", url: "/guardian/backup", icon: HardDrive },
-  { title: "Suporte", url: "/guardian/support", icon: MessageSquare },
+  { title: "Dashboard", url: "/guardian", icon: Globe },
 ];
 
 const nexusItems = [
-  { title: "Chat IA", url: "/nexus/chat", icon: MessageSquare },
-  { title: "Auto-Correção", url: "/nexus/auto-correction", icon: Zap },
-  { title: "Desenvolvimento", url: "/nexus/development", icon: Brain },
-  { title: "Consenso", url: "/nexus/consensus", icon: Users },
+  { title: "Dashboard IA", url: "/nexus", icon: Brain },
+  { title: "Chat IA", url: "/nexus", icon: MessageSquare },
+  { title: "Auto-Correção", url: "/nexus", icon: Zap },
+  { title: "Consenso", url: "/nexus", icon: Users },
 ];
 
 export function AppSidebar() {

@@ -297,10 +297,10 @@ const Index = () => {
                       <Button 
                         variant="outline" 
                         className="h-20 flex-col border-slate-600 hover:bg-slate-700"
-                        onClick={() => navigate('/guardian')}
+                        onClick={() => navigate('/guardian/users')}
                       >
                         <MessageSquare className="w-6 h-6 mb-2 text-pink-400" />
-                        <span className="text-xs">Suporte</span>
+                        <span className="text-xs">Usuários</span>
                       </Button>
                     </div>
                   </TabsContent>
@@ -395,7 +395,7 @@ const Index = () => {
                       <Button 
                         variant="outline" 
                         className="h-20 flex-col border-slate-600 hover:bg-slate-700"
-                        onClick={() => navigate('/guardian')}
+                        onClick={() => navigate('/guardian/monitoring')}
                       >
                         <BarChart3 className="w-6 h-6 mb-2 text-yellow-400" />
                         <span className="text-xs">Relatórios</span>
