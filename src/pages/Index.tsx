@@ -363,7 +363,7 @@ const Index = () => {
                       <Button 
                         variant="outline" 
                         className="h-20 flex-col border-slate-600 hover:bg-slate-700"
-                        onClick={() => window.open('https://github.com/zivianivr/guardian_lovable', '_blank')}
+                        onClick={() => window.open('https://github.com/zivianivr/nexus-guardian-system', '_blank')}
                       >
                         <Smartphone className="w-6 h-6 mb-2 text-blue-400" />
                         <span className="text-xs">App Mobile</span>
@@ -371,7 +371,7 @@ const Index = () => {
                       <Button 
                         variant="outline" 
                         className="h-20 flex-col border-slate-600 hover:bg-slate-700"
-                        onClick={() => window.open('https://github.com/zivianivr/guardian_lovable/releases', '_blank')}
+                        onClick={() => window.open('https://github.com/zivianivr/nexus-guardian-system/releases', '_blank')}
                       >
                         <Download className="w-6 h-6 mb-2 text-green-400" />
                         <span className="text-xs">Desktop App</span>
@@ -379,7 +379,7 @@ const Index = () => {
                       <Button 
                         variant="outline" 
                         className="h-20 flex-col border-slate-600 hover:bg-slate-700"
-                        onClick={() => window.open('https://github.com/zivianivr/guardian_lovable', '_blank')}
+                        onClick={() => window.open('https://github.com/zivianivr/nexus-guardian-system', '_blank')}
                       >
                         <Github className="w-6 h-6 mb-2 text-gray-400" />
                         <span className="text-xs">GitHub</span>

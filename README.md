@@ -42,7 +42,7 @@ Sistema completo de gerenciamento VoIP integrado com Inteligência Artificial av
 
 ```bash
 # No servidor, execute:
-wget https://raw.githubusercontent.com/zivianivr/guardian_lovable/main/install.sh
+wget https://raw.githubusercontent.com/zivianivr/nexus-guardian-system/main/install.sh
 chmod +x install.sh
 sudo ./install.sh
 ```
@@ -104,7 +104,7 @@ ZABBIX_SERVER_1_PASS=senha
 
 # GitHub para auto-atualização
 GITHUB_TOKEN=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
-GITHUB_REPO=https://github.com/zivianivr/guardian_lovable.git
+GITHUB_REPO=https://github.com/zivianivr/nexus-guardian-system.git
 
 # Sistema
 SECRET_KEY=sua_chave_secreta_aqui

@@ -49,7 +49,7 @@ fi
 # Definir variáveis
 PROJECT_DIR="/opt/guardian-voip-v3"
 SERVICE_USER="guardian"
-REPO_URL="https://github.com/zivianivr/guardian_lovable.git"
+REPO_URL="https://github.com/zivianivr/nexus-guardian-system.git"
 
 log "Iniciando instalação do Sistema Guardian VoIP v3.0 & Nexus AI..."
 
@@ -162,7 +162,7 @@ DEBUG=False
 
 # GitHub para auto-atualização
 GITHUB_TOKEN=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
-GITHUB_REPO=$REPO_URL
+GITHUB_REPO=https://github.com/zivianivr/nexus-guardian-system.git
 
 # Supabase
 SUPABASE_URL=https://fvdwvisahnnitepsdova.supabase.co
