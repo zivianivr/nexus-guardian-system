@@ -23,9 +23,11 @@ import {
   AlertTriangle,
   CheckCircle,
   Clock,
-  Download
+  Download,
+  ArrowLeft
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 
 interface Message {
   id: string;
@@ -45,6 +47,7 @@ interface AIModel {
 
 const NexusAI = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -178,11 +181,22 @@ Posso ajudar com mais algum aspecto do desenvolvimento?`;
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Nexus AI - Orquestração Multi-IA
-            </h1>
-            <p className="text-slate-400 mt-2">Plataforma de consenso e validação com múltiplas inteligências artificiais</p>
+          <div className="flex items-center space-x-4">
+            <Button 
+              onClick={() => navigate('/')}
+              variant="outline" 
+              size="sm"
+              className="border-slate-600 hover:bg-slate-700"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Voltar
+            </Button>
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Nexus AI - Orquestração Multi-IA
+              </h1>
+              <p className="text-slate-400 mt-2">Plataforma de consenso e validação com múltiplas inteligências artificiais</p>
+            </div>
           </div>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">

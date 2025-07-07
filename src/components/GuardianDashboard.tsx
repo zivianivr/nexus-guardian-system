@@ -27,8 +27,10 @@ import {
   Plus,
   MapPin,
   Signal,
-  Zap
+  Zap,
+  ArrowLeft
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface Device {
   id: string;
@@ -53,6 +55,7 @@ interface NetworkBlock {
 }
 
 const GuardianDashboard = () => {
+  const navigate = useNavigate();
   const [devices, setDevices] = useState<Device[]>([
     {
       id: '1',
@@ -147,11 +150,22 @@ const GuardianDashboard = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
-              Guardian VoIP Dashboard
-            </h1>
-            <p className="text-slate-400 mt-2">Monitoramento e gestão inteligente de dispositivos VoIP</p>
+          <div className="flex items-center space-x-4">
+            <Button 
+              onClick={() => navigate('/')}
+              variant="outline" 
+              size="sm"
+              className="border-slate-600 hover:bg-slate-700"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Voltar
+            </Button>
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
+                Guardian VoIP Dashboard
+              </h1>
+              <p className="text-slate-400 mt-2">Monitoramento e gestão inteligente de dispositivos VoIP</p>
+            </div>
           </div>
           <div className="flex items-center space-x-4">
             <Button className="bg-blue-600 hover:bg-blue-700">
