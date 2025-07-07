@@ -20,25 +20,6 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient();
 
-// Protected Route Component
-const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { user, profile, loading } = useAuth();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
-        <div className="text-white text-xl">Carregando...</div>
-      </div>
-    );
-  }
-
-  if (!user || !profile || profile.status !== 'approved') {
-    return <Navigate to="/auth" replace />;
-  }
-
-  return <>{children}</>;
-};
-
 // App Content Component
 const AppContent = () => {
   const { user, profile, loading } = useAuth();
@@ -51,6 +32,29 @@ const AppContent = () => {
     );
   }
 
+  // If user is not authenticated, show auth page
+  if (!user) {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="*" element={<AuthPage />} />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
+
+  // If user is authenticated but not approved, show auth page with message
+  if (profile && profile.status !== 'approved') {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="*" element={<AuthPage />} />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
+
+  // User is authenticated and approved, show main app
   return (
     <BrowserRouter>
       <Routes>
@@ -58,27 +62,25 @@ const AppContent = () => {
         <Route
           path="/*"
           element={
-            <ProtectedRoute>
-              <SidebarProvider>
-                <div className="min-h-screen flex w-full">
-                  <AppSidebar />
-                  <main className="flex-1 overflow-auto">
-                    <Routes>
-                      <Route path="/" element={<Index />} />
-                      <Route path="/guardian" element={<GuardianDashboard />} />
-                      <Route path="/guardian/monitoring" element={<GuardianMonitoring />} />
-                      <Route path="/guardian/provisioning" element={<GuardianProvisioning />} />
-                      <Route path="/guardian/telephony" element={<GuardianTelephony />} />
-                      <Route path="/guardian/users" element={<GuardianUsers />} />
-                      <Route path="/nexus" element={<NexusAI />} />
-                      <Route path="/nexus/*" element={<NexusAI />} />
-                      <Route path="/system" element={<SystemManagement />} />
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
-                  </main>
-                </div>
-              </SidebarProvider>
-            </ProtectedRoute>
+            <SidebarProvider>
+              <div className="min-h-screen flex w-full">
+                <AppSidebar />
+                <main className="flex-1 overflow-auto">
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/guardian" element={<GuardianDashboard />} />
+                    <Route path="/guardian/monitoring" element={<GuardianMonitoring />} />
+                    <Route path="/guardian/provisioning" element={<GuardianProvisioning />} />
+                    <Route path="/guardian/telephony" element={<GuardianTelephony />} />
+                    <Route path="/guardian/users" element={<GuardianUsers />} />
+                    <Route path="/nexus" element={<NexusAI />} />
+                    <Route path="/nexus/*" element={<NexusAI />} />
+                    <Route path="/system" element={<SystemManagement />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </main>
+              </div>
+            </SidebarProvider>
           }
         />
       </Routes>

@@ -209,20 +209,6 @@ const AuthPage = () => {
                   </Button>
                 </form>
 
-                {/* Quick Access for Master User */}
-                <div className="mt-6 p-4 bg-slate-700/30 rounded-lg border border-slate-600">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Shield className="w-4 h-4 text-yellow-400" />
-                    <span className="text-sm font-medium text-yellow-400">Acesso Master</span>
-                  </div>
-                  <p className="text-xs text-slate-400 mb-3">
-                    Para primeiro acesso como Super Administrador:
-                  </p>
-                  <div className="space-y-1 text-xs">
-                    <p className="text-slate-300">📧 <strong>Email:</strong> rafael.ziviani@live.com</p>
-                    <p className="text-slate-300">🔐 <strong>Senha:</strong> 19782211Robert@</p>
-                  </div>
-                </div>
               </TabsContent>
 
               {/* Signup Tab */}
