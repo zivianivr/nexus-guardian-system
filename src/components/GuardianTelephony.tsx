@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Phone, PhoneCall, PhoneOff, Clock, Users } from "lucide-react";
+import { Phone, PhoneCall, PhoneOff, Clock, Users, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface Call {
   id: string;
@@ -17,6 +18,7 @@ interface Call {
 }
 
 export default function GuardianTelephony() {
+  const navigate = useNavigate();
   const [calls, setCalls] = useState<Call[]>([
     { id: "1", from: "1001", to: "1002", duration: "00:02:34", status: "completed", timestamp: "12:30:15" },
     { id: "2", from: "1003", to: "1001", duration: "00:01:45", status: "completed", timestamp: "12:28:42" },
@@ -75,9 +77,19 @@ export default function GuardianTelephony() {
   return (
     <div className="p-6 space-y-6">
       <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold">Telefonia</h1>
-          <p className="text-muted-foreground">Gerenciamento de chamadas e testes</p>
+        <div className="flex items-center space-x-4">
+          <Button 
+            onClick={() => navigate('/')}
+            variant="outline" 
+            size="sm"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Voltar
+          </Button>
+          <div>
+            <h1 className="text-3xl font-bold">Telefonia</h1>
+            <p className="text-muted-foreground">Gerenciamento de chamadas e testes</p>
+          </div>
         </div>
       </div>
 

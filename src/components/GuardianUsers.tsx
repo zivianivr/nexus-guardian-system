@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Users, Plus, Edit, Trash2, Mail, Shield, UserCheck } from "lucide-react";
+import { Users, Plus, Edit, Trash2, Mail, Shield, UserCheck, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
 interface User {
@@ -20,6 +21,7 @@ interface User {
 
 export default function GuardianUsers() {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [users, setUsers] = useState<User[]>([
     { id: "1", email: "rafael.ziviani@live.com", name: "Rafael Ziviani", role: "super_admin", status: "approved", createdAt: "2024-01-15" },
     { id: "2", email: "admin@empresa.com", name: "Administrador", role: "admin", status: "approved", createdAt: "2024-01-20" },
@@ -106,9 +108,19 @@ export default function GuardianUsers() {
   return (
     <div className="p-6 space-y-6">
       <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold">Usuários</h1>
-          <p className="text-muted-foreground">Gerenciamento de usuários do sistema</p>
+        <div className="flex items-center space-x-4">
+          <Button 
+            onClick={() => navigate('/')}
+            variant="outline" 
+            size="sm"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Voltar
+          </Button>
+          <div>
+            <h1 className="text-3xl font-bold">Usuários</h1>
+            <p className="text-muted-foreground">Gerenciamento de usuários do sistema</p>
+          </div>
         </div>
       </div>
 

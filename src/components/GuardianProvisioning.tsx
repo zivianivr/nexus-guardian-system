@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Phone, User, Edit, Trash2 } from "lucide-react";
+import { Plus, Phone, User, Edit, Trash2, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
 interface Extension {
@@ -19,6 +20,7 @@ interface Extension {
 
 export default function GuardianProvisioning() {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [extensions, setExtensions] = useState<Extension[]>([
     { id: "1", number: "1001", name: "João Silva", status: "active", type: "SIP" },
     { id: "2", number: "1002", name: "Maria Santos", status: "inactive", type: "SIP" },
@@ -77,9 +79,19 @@ export default function GuardianProvisioning() {
   return (
     <div className="p-6 space-y-6">
       <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold">Provisionamento</h1>
-          <p className="text-muted-foreground">Gerenciamento de ramais e dispositivos</p>
+        <div className="flex items-center space-x-4">
+          <Button 
+            onClick={() => navigate('/')}
+            variant="outline" 
+            size="sm"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Voltar
+          </Button>
+          <div>
+            <h1 className="text-3xl font-bold">Provisionamento</h1>
+            <p className="text-muted-foreground">Gerenciamento de ramais e dispositivos</p>
+          </div>
         </div>
       </div>
 

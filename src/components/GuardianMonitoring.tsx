@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Activity, Server, Users, Phone, AlertTriangle, CheckCircle } from "lucide-react";
+import { Activity, Server, Users, Phone, AlertTriangle, CheckCircle, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface MonitoringData {
   servers: { name: string; status: string; load: number }[];
@@ -13,6 +14,7 @@ interface MonitoringData {
 }
 
 export default function GuardianMonitoring() {
+  const navigate = useNavigate();
   const [data, setData] = useState<MonitoringData>({
     servers: [
       { name: "SIP Server 1", status: "online", load: 45 },
@@ -48,9 +50,19 @@ export default function GuardianMonitoring() {
   return (
     <div className="p-6 space-y-6">
       <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold">Monitoramento</h1>
-          <p className="text-muted-foreground">Status em tempo real do sistema Guardian VoIP</p>
+        <div className="flex items-center space-x-4">
+          <Button 
+            onClick={() => navigate('/')}
+            variant="outline" 
+            size="sm"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Voltar
+          </Button>
+          <div>
+            <h1 className="text-3xl font-bold">Monitoramento</h1>
+            <p className="text-muted-foreground">Status em tempo real do sistema Guardian VoIP</p>
+          </div>
         </div>
         <Button onClick={refreshData} disabled={isLoading}>
           <Activity className="mr-2 h-4 w-4" />
