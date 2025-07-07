@@ -78,7 +78,7 @@ const SystemManagement = () => {
     zabbixServer2Pass: '',
     whatsappNumber: '',
     githubToken: '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',
-    githubRepo: 'https://github.com/SEU_USUARIO/guardian-voip-v3.git'
+    githubRepo: 'https://github.com/zivianivr/nexus-guardian-system.git'
   });
 
   const handleUpdateSystem = async () => {
