@@ -14,6 +14,7 @@ import GuardianMonitoring from "./components/GuardianMonitoring";
 import GuardianProvisioning from "./components/GuardianProvisioning";
 import GuardianTelephony from "./components/GuardianTelephony";
 import GuardianUsers from "./components/GuardianUsers";
+import DesktopClient from "./components/DesktopClient";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "./components/AppSidebar";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
@@ -76,6 +77,7 @@ const AppContent = () => {
                     <Route path="/nexus" element={<NexusAI />} />
                     <Route path="/nexus/*" element={<NexusAI />} />
                     <Route path="/system" element={<SystemManagement />} />
+                    <Route path="/desktop" element={<DesktopClient />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </main>

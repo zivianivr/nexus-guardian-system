@@ -13,7 +13,8 @@ import {
   HardDrive,
   Globe,
   Zap,
-  UserCheck
+  UserCheck,
+  Monitor
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -34,6 +35,7 @@ const mainItems = [
   { title: "Dashboard", url: "/", icon: Activity },
   { title: "Guardian VoIP", url: "/guardian", icon: Shield },
   { title: "Nexus AI", url: "/nexus", icon: Brain },
+  { title: "Cliente Desktop", url: "/desktop", icon: Monitor },
   { title: "Sistema", url: "/system", icon: Settings },
 ];
 
